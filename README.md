@@ -7,7 +7,7 @@
 | 子目录 | 内容 |
 |---|---|
 | [`openclaw/`](./openclaw) | OpenClaw（CLI agent + 多通道机器人）部署、飞书机器人接入、LLM 后端切换等 |
-| `hermes/` | _待添加_ |
+| [`hermes/`](./hermes) | Hermes Agent（self-improving，飞书/TG/Slack 等）安装、飞书接入、LLM 后端、与 OpenClaw 共存 |
 
 ## 约定
 
