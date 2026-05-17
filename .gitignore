@@ -1,0 +1,13 @@
+.DS_Store
+*.log
+*.swp
+*.bak
+*.bak.*
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.token
+*.secret
+credentials/

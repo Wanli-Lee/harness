@@ -1,0 +1,108 @@
+{
+  "_comment": "脱敏示例配置。复制到 ~/.openclaw/openclaw.json 后替换占位符并删除带下划线的注释字段。",
+
+  "agents": {
+    "defaults": {
+      "workspace": "/home/USER/.openclaw/workspace",
+      "models": {
+        "litellm/claude-opus-4.7-1m-internal": { "alias": "LiteLLM" },
+        "litellm/claude-opus-4.7": { "alias": "LiteLLM" }
+      },
+      "model": {
+        "primary": "litellm/claude-opus-4.7-1m-internal"
+      }
+    }
+  },
+
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "REPLACE_WITH_RANDOM_HEX"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": { "mode": "off", "resetOnExit": false },
+    "controlUi": {
+      "allowInsecureAuth": true,
+      "allowedOrigins": [
+        "http://127.0.0.1:18789",
+        "http://localhost:18789"
+      ]
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+
+  "session": { "dmScope": "per-account-channel-peer" },
+  "tools": { "profile": "coding" },
+
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "connectionMode": "websocket",
+      "groupPolicy": "allowlist",
+      "requireMention": true,
+      "accounts": {
+        "default": {
+          "appId": "cli_XXXXXXXXXXXXXXXX",
+          "appSecret": "REPLACE_WITH_APP_SECRET"
+        },
+        "robot2": {
+          "appId": "cli_YYYYYYYYYYYYYYYY",
+          "appSecret": "REPLACE_WITH_APP_SECRET"
+        }
+      }
+    }
+  },
+
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "litellm": {
+        "baseUrl": "http://YOUR_GATEWAY_HOST:PORT",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "claude-opus-4.7-1m-internal",
+            "name": "Claude Opus 4.7 (1M context)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 1000000,
+            "maxTokens": 64000
+          },
+          {
+            "id": "claude-opus-4.7",
+            "name": "Claude Opus 4.7",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 32000
+          }
+        ]
+      }
+    }
+  },
+
+  "auth": {
+    "profiles": {
+      "litellm:default": {
+        "provider": "litellm",
+        "mode": "api_key"
+      }
+    }
+  }
+}
