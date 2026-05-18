@@ -5,6 +5,7 @@
 ## 目录
 
 - [feishu.md](./feishu.md) — 接入飞书机器人（WebSocket 长连）
+- [multi-feishu-profiles.md](./multi-feishu-profiles.md) — 用 profile 同机跑多个飞书机器人
 - [llm-backend.md](./llm-backend.md) — 接 OpenAI 兼容自定义后端（用 Claude Opus 4.7）
 - [coexist-with-openclaw.md](./coexist-with-openclaw.md) — Hermes 和 OpenClaw 同机共存的注意点
 - [examples/env.example](./examples/env.example) — `~/.hermes/.env` 示例（脱敏）
